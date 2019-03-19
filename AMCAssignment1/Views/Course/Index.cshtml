@@ -1,0 +1,39 @@
+﻿@model List<IndexCourseViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (!Model.Any())
+  {
+    <div style="margin-top:15px;">
+        <p><strong>You have no course yet</strong></p>
+    </div>
+  }
+  else
+  {
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>NumberOfEnrollments</th>
+                <th>NumberOfHours</th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model)
+            {
+                <tr>
+                    <td>@record.Name</td>
+                    <td>@record.NumberOfEnrollments</td>
+                    <td>@record.NumberOfHours</td>         
+                    <td>
+                        <a href="@Url.Action("Detail", "Course", new { id = record.Id })">Detail</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+  }
